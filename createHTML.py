@@ -75,11 +75,11 @@ def conver(match):
 
 def optionString(options):
     for i in range(len(options)):
-        option = options[i]
-        if "<img" in option:
+        if "<img" in options[i]:
             pattern = r"<img[\s\S]+?src=\"(//\S+)\""    
-            result = re.sub(pattern, conver, option)
+            result = re.sub(pattern, conver, options[i])
             options[i] = result
+
 
     if all(len(x)<=10 for x in options):
         return '''

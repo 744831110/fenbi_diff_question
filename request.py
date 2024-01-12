@@ -59,12 +59,14 @@ ziliao_material_dic = {}
 for index in ziliao_material_index_set:
     ziliao_material_dic[index] = common_exercise_question.materials[index]
 
-ketui_filter_list = list(gd_xiangzhen_exercises.ketui_questionIds)
-for questionId in gd_exercises.ketui_questionIds:
-    if questionId in ketui_filter_list:
-        ketui_filter_list.remove(questionId)
-ketui_diff_questions = [gd_xiangzhen_exercise_question.questions[str(x)] for x in ketui_filter_list]
-print(ketui_filter_list)
+# 科学推理
+ketui_diff_questions = []
+if len(gd_xiangzhen_exercises_id) > 0:
+    ketui_filter_list = list(gd_xiangzhen_exercises.ketui_questionIds)
+    for questionId in gd_exercises.ketui_questionIds:
+        if questionId in ketui_filter_list:
+            ketui_filter_list.remove(questionId)
+    ketui_diff_questions = [gd_xiangzhen_exercise_question.questions[str(x)] for x in ketui_filter_list]
 
 # 用html做出试卷，并转成pdf，最后输出到文件夹中
 createHTML(yanyu_diff_questions, ziliao_material_dic, ziliao_diff_question, ketui_diff_questions)

@@ -6,6 +6,7 @@ class Exercise:
         sheet = request_dic['sheet']
         chapters = sheet['chapters']
         question_num = 0
+        contain_ketui = False
         for chapter in chapters:
             if chapter['name'] == '言语理解与表达':
                 self.yanyu_start_num = question_num
@@ -15,11 +16,17 @@ class Exercise:
                 self.ziliao_start_num = question_num
                 question_num += int(chapter['questionCount'])
                 self.ziliao_end_num = question_num
+            elif chapter['name'] == '科学推理':
+                contain_ketui = True
+                self.ketui_start_num = question_num
+                question_num += int(chapter['questionCount'])
+                self.ketui_end_num = question_num
             else:
                 question_num += int(chapter['questionCount'])
         self.questionIds = sheet['questionIds']
         self.yanyu_questionIds = self.questionIds[self.yanyu_start_num: self.yanyu_end_num]
         self.ziliao_questionIds = self.questionIds[self.ziliao_start_num: self.ziliao_end_num]
+        self.ketui_questionIds = self.questionIds[self.ketui_start_num: self.ketui_end_num] if contain_ketui else []
 
 class ExerciseQuestions:
     def __init__(self, request_content):

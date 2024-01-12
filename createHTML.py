@@ -37,20 +37,23 @@ html_str_end = '''
 </body>
 </html>
 '''
-def createHTML(yanyu_questions, ziliao_material_dic, ziliao_question):
+def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, ketui_questions):
     content = ""
     for question in yanyu_questions:
         content += question.content
         content += optionString(question.options)
     content += '<p></p>'
     for index,material in ziliao_material_dic.items():
-        print(material)
         content += material['content']
-        filtered_list = list(filter(lambda x: index in x.materialIndexes , ziliao_question)) 
+        filtered_list = list(filter(lambda x: index in x.materialIndexes , ziliao_questions)) 
         for question in filtered_list:
             content += question.content
             content += optionString(question.options)
-    html_path = '/Users/chenqian/Desktop/陈谦/python/request_fenbi_exam_diff/diff_question.html'
+    content += '<p></p>'
+    for question in ketui_questions:
+        content += question.content
+        content += optionString(question.options)
+    html_path = 'diff_question.html'
     find_and_write(html_path, content)
 
     

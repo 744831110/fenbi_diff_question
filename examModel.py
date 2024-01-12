@@ -1,0 +1,45 @@
+import json
+
+class Exercise:
+    def __init__(self, request_content):
+        request_dic = json.loads(request_content)
+        sheet = request_dic['sheet']
+        chapters = sheet['chapters']
+        question_num = 0
+        for chapter in chapters:
+            if chapter['name'] == '言语理解与表达':
+                self.yanyu_start_num = question_num
+                question_num += int(chapter['questionCount'])
+                self.yanyu_end_num = question_num
+            elif chapter['name'] == '资料分析':
+                self.ziliao_start_num = question_num
+                question_num += int(chapter['questionCount'])
+                self.ziliao_end_num = question_num
+            else:
+                question_num += int(chapter['questionCount'])
+        self.questionIds = sheet['questionIds']
+        self.yanyu_questionIds = self.questionIds[self.yanyu_start_num: self.yanyu_end_num]
+        self.ziliao_questionIds = self.questionIds[self.ziliao_start_num: self.ziliao_end_num]
+
+class ExerciseQuestions:
+    def __init__(self, request_content):
+        request_dic = json.loads(request_content)
+        self.materials = request_dic['materials']
+        question_list = request_dic['questions']
+        self.questions = {}
+        for i in range(len(question_list)):
+            question = Question(question_list[i], i)
+            self.questions[question.id] = question
+
+class Question:
+    def __init__(self, dic, question_num):
+        self.id = str(dic['id'])
+        self.content = dic['content']
+        self.options = dic['accessories'][0]['options']
+        self.question_num = question_num
+        self.content = self.content[:3] + str(question_num) + '.' + self.content[3:]
+        if dic['materialIndexes']:
+            self.materialIndexes = dic['materialIndexes']
+        else:
+            self.materialIndexes = None
+        

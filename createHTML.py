@@ -1,4 +1,5 @@
 from examModel import *
+import re
 # 用html
 html_str_start = '''<!DOCTYPE html>
 <html lang="zh">
@@ -66,7 +67,20 @@ def find_and_write(filepath, content):
     file.write(html_str_end)
     file.close
 
+def conver(match):
+    if "https://" in match.group(1):
+        return match.group()
+    else:
+        return match.group().replace(match.group(1), "https:" + match.group(1)) 
+
 def optionString(options):
+    for i in range(len(options)):
+        option = options[i]
+        if "<img" in option:
+            pattern = r"<img[\s\S]+?src=\"(//\S+)\""    
+            result = re.sub(pattern, conver, option)
+            options[i] = result
+
     if all(len(x)<=10 for x in options):
         return '''
     <div class="container">

@@ -35,7 +35,7 @@ class ExerciseQuestions:
         question_list = request_dic['questions']
         self.questions = {}
         for i in range(len(question_list)):
-            question = Question(question_list[i], i)
+            question = Question(question_list[i], i+1)
             self.questions[question.id] = question
 
 class Question:

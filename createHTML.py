@@ -19,7 +19,7 @@ html_str_start = '''<!DOCTYPE html>
         }
         body {  
             font-family: Arial, sans-serif;  
-            font-size: 16px;  
+            font-size: 14px;  
         }  
         p {  
             line-height: 190%;  

@@ -3,11 +3,11 @@ from examModel import *
 from createHTML import *
 
 # 获取试卷的整体信息，为了获取questionIds 下面三个试卷id和cookie需填入
-common_exercises_id = ''
-gd_exercises_id = ''
+common_exercises_id = '2525058500'
+gd_exercises_id = '2525057936'
 # 乡镇，用来获取科学推理差异题
-gd_xiangzhen_exercises_id = ''
-cookie = ''
+gd_xiangzhen_exercises_id = '2525058305'
+cookie = 'sid=148033; _ga=GA1.2.1604876671.1670060906; persistent=bS0BhTaGkgzOJPBsuOq+BbUFnY+01ThSQoCv7XR7D9nnafNeAOQJQuDwu3CK/qOkIPSm45M71OnWpoy58LiURQ==; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22110158411%22%2C%22first_id%22%3A%22184d7603219da4-09b11ab4beb522-1a525635-2073600-184d760321aa49%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22184d7603219da4-09b11ab4beb522-1a525635-2073600-184d760321aa49%22%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTg2ZjM4Y2M3ZTYyZjctMGYzOTg5ZGUyNWM5MTM4LTFmNTI1NjM0LTE5MzAxNzYtMTg2ZjM4Y2M3ZTcxYzg5IiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiMTEwMTU4NDExIn0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22110158411%22%7D%7D; _ga_HKHM0G5171=GS1.2.1704766269.48.1.1704773182.0.0.0; userid=110158411; sess=XoWA940wGRR8CYb/8eSrk4NxNyjtnz9JWM1E5m8A2hgZivt+Vh00ulvgQLsE7M+QYUJmpDNFydHP8Z0yT9Hs7QbC5zsgGmNWg39LuDxn2Ic=; acw_tc=0b328f1a17052261157835978e02c0d293bd99832f678dc32016adfb35dbea'
 headers = {'Accept-Language': 'zh-CN', 'Cookie': cookie}
 
 def createExercises(exercise_id):

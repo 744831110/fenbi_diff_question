@@ -38,7 +38,7 @@ html_str_end = '''
 </body>
 </html>
 '''
-def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, ketui_questions):
+def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, ketui_questions, shuliang_questions):
     content = ""
     for question in yanyu_questions:
         content += question.content
@@ -54,6 +54,11 @@ def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, ketui_que
     for question in ketui_questions:
         content += question.content
         content += optionString(question.options)
+    content += '<p></p>'
+    for question in shuliang_questions:
+        content += question.content
+        content += optionString(question.options)
+
     html_path = 'diff_question.html'
     find_and_write(html_path, content)
 

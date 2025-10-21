@@ -38,12 +38,13 @@ html_str_end = '''
 </body>
 </html>
 '''
-def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, ketui_questions, shuliang_questions):
+def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, shuliang_questions, panduan_questions):
     content = ""
     for question in yanyu_questions:
         content += question.content
         content += optionString(question.options)
     content += '<p></p>'
+
     for index,material in ziliao_material_dic.items():
         content += material['content']
         filtered_list = list(filter(lambda x: index in x.materialIndexes , ziliao_questions)) 
@@ -51,10 +52,12 @@ def createHTML(yanyu_questions, ziliao_material_dic, ziliao_questions, ketui_que
             content += question.content
             content += optionString(question.options)
     content += '<p></p>'
-    for question in ketui_questions:
+
+    for question in panduan_questions:
         content += question.content
         content += optionString(question.options)
     content += '<p></p>'
+
     for question in shuliang_questions:
         content += question.content
         content += optionString(question.options)

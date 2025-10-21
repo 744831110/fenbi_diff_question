@@ -21,6 +21,10 @@ class Exercise:
                 self.ketui_start_num = question_num
                 question_num += int(chapter['questionCount'])
                 self.ketui_end_num = question_num
+            elif chapter['name'] == '判断推理':
+                self.panduan_start_num = question_num
+                question_num+= int(chapter['questionCount'])
+                self.panduan_end_num = question_num
             elif chapter['name'] == '数量关系':
                 self.shuliang_start_num = question_num
                 question_num += int(chapter['questionCount'])
@@ -31,6 +35,7 @@ class Exercise:
         self.yanyu_questionIds = self.questionIds[self.yanyu_start_num: self.yanyu_end_num]
         self.ziliao_questionIds = self.questionIds[self.ziliao_start_num: self.ziliao_end_num]
         self.shuliang_questionIds = self.questionIds[self.shuliang_start_num: self.shuliang_end_num]
+        self.panduan_questionIds = self.questionIds[self.panduan_start_num: self.panduan_end_num]
         self.ketui_questionIds = self.questionIds[self.ketui_start_num: self.ketui_end_num] if contain_ketui else []
 
 class ExerciseQuestions:
@@ -50,6 +55,9 @@ class Question:
         # 只要单选题
         if dic['type'] == 1:
             self.options = dic['accessories'][0]['options']
+            for i in range(len(self.options)):
+                self.options[i] = self.options[i].replace('</p>', '')
+                self.options[i] = self.options[i].replace('<p>', '')
             self.question_num = question_num
             self.content = self.content[:3] + str(question_num) + '.' + self.content[3:]
             if dic['materialIndexes']:
